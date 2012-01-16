@@ -8,7 +8,8 @@ if ARGV.size < 2
   exit 1
 end
 
+token = "0c05193d7b195f4fb3f1fd788b1849570309112fd65d2fc5015c6ddded609bcc2170bd28b25717aa95612aec"
 message = Sisal::Message.new(ARGV.shift, ARGV.join(' '))
-provider = Sisal::Providers::TropoProvider.new("0c009a3f50845743b5784070823b5e7a09142571707d5e10720e2eb45bf1757dda31e6c9216c2ff7d1b2cd3e")
+provider = Sisal::Providers::TropoProvider.new(token)
 response = provider.send message
 puts response.inspect
