@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/sisal'
+
+if ARGV.size < 2
+  puts "Usage: sisal_test mobile_number text"
+  puts "Example: sisal_test 554800001111 OHAI"
+  exit 1
+end
+
+message = Sisal::Message.new(ARGV.shift, ARGV.join(' '))
+provider = Sisal::Providers::TropoProvider.new("0c009a3f50845743b5784070823b5e7a09142571707d5e10720e2eb45bf1757dda31e6c9216c2ff7d1b2cd3e")
+response = provider.send message
+puts response.inspect
