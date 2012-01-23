@@ -2,14 +2,14 @@
 
 require_relative '../lib/sisal'
 
-if ARGV.size < 2
-  puts "Usage: sisal_test mobile_number text"
-  puts "Example: sisal_test 554800001111 OHAI"
+if ARGV.size < 3
+  puts "Usage: sisal_test auth_token mobile_number text"
+  puts "Example: sisal_test 123adf 554800001111 OHAI"
   exit 1
 end
 
-token = "0c05193d7b195f4fb3f1fd788b1849570309112fd65d2fc5015c6ddded609bcc2170bd28b25717aa95612aec"
+# provider = Sisal::Providers::TropoProvider.new(ARGV.shift)
+provider = Sisal::Providers::ClickatellProvider.new(ARGV.shift)
 message = Sisal::Message.new(ARGV.shift, ARGV.join(' '))
-provider = Sisal::Providers::TropoProvider.new(token)
 response = provider.send message
 puts response.inspect

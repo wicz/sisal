@@ -4,9 +4,10 @@ module Sisal
     def send message
       responses = []
       message.valid?
+      formatter = Sisal::Formatters::EMS::Text.new(message)
       message.to.each do |dst|
-        message.data.each do |part|
-          responses << deliver(dst, part)
+        formatter.data.each do |data|
+          responses << deliver(dst, data)
         end
       end
       responses

@@ -7,6 +7,6 @@ require_relative 'sisal/encodings/unicode_encoding'
 
 require_relative 'sisal/provider'
 require_relative 'sisal/providers/tropo_provider'
+require_relative 'sisal/providers/clickatell_provider'
 
-module Sisal
-end
+require_relative 'sisal/formatters/ems_formatter'
