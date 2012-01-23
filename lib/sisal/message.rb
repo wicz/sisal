@@ -60,7 +60,7 @@ module Sisal
     def valid?
       validate_numbers
       validate_sender_id
-      validate_message_size
+      # validate_message_size
     end
 
     def validate_numbers
