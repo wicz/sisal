@@ -1,25 +1,28 @@
-require 'open-uri'
+require 'rest_client'
 
 module Sisal
   module Providers
     class TropoProvider < Provider
-      API_URL = "https://api.tropo.com/1.0/sessions"
-      TOKEN   = "0c009a3f50845743b5784070823b5e7a09142571707d5e10720e2eb45bf1757dda31e6c9216c2ff7d1b2cd3e"
+      API_URL         = "https://api.tropo.com/1.0/sessions"
+      # Let's use a regex against the xml response, thus we don't need
+      # to add dependencies like xml or json parser
+      RESPONSE_REGEX  = /\<success\>(?<success>[^<]+)\<\/success\>.*\<id\>(?<id>[^<]+)<\/id\>/
+
+      attr_accessor :token
 
       def initialize(token)
         @token = token
       end
 
-      def deliver(number, message)
-        to = number.delete '+'
-        url = API_URL + "?action=create&token=#{@token}&to=#{to}&msg=#{URI.escape(message)}"
-        parse_response open(url).read
+      def deliver(to, message)
+        params = { action: "create", token: @token, to: to, msg: message.text }
+        response = parse_response(RestClient.get(API_URL, params: params))
+        success = (response[:success] == "true")
+        Sisal::Response.new(success, response[:id])
       end
 
       def parse_response(data)
-        matches = data.match /\<success\>([a-z]+).*\<id\>([^<]+)/
-        success = matches[1] == "true"
-        Sisal::Response.new(success, matches[1], "")
+        data.match(RESPONSE_REGEX) || {}
       end
     end
   end
