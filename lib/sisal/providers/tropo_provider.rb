@@ -18,7 +18,8 @@ module Sisal
         params = { action: "create", token: @token, to: to, msg: message.text }
         response = parse_response(RestClient.get(API_URL, params: params))
         success = (response[:success] == "true")
-        Sisal::Response.new(success, response[:id])
+        id = response[:id].to_s.gsub(/[^a-z0-9]/i, '')
+        Sisal::Response.new(success, id)
       end
 
       def parse_response(data)
