@@ -86,6 +86,7 @@ describe Sisal::Providers::ClickatellProvider do
 
   describe "#deliver" do
     it "response is successful when message is sent" do
+      provider.stub(authenticated?: true)
       provider.session_id = '123'
       response = provider.deliver('55123', double(:message, text: "Hello MU!"))
       response.should be_a(Sisal::Response)
@@ -94,6 +95,7 @@ describe Sisal::Providers::ClickatellProvider do
     end
 
     it "reponse is failed when message cant be sent" do
+      provider.stub(authenticated?: true)
       provider.session_id = 'expired'
       response = provider.deliver('55123', double(:message, text: "This will fail =("))
       response.should be_a(Sisal::Response)

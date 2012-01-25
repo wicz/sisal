@@ -40,6 +40,7 @@ module Sisal
       end
 
       def deliver(to, message)
+        authenticate unless authenticated?
         response = execute(:sendmsg, session_id: @session_id, to: to, text: message.text)
         response = parse_response(response)
         success = (response[:status] == "ID")
