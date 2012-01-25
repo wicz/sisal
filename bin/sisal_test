@@ -2,14 +2,16 @@
 
 require_relative '../lib/sisal'
 
-if ARGV.size < 3
-  puts "Usage: sisal_test auth_token mobile_number text"
-  puts "Example: sisal_test 123adf 554800001111 OHAI"
-  exit 1
-end
-
+# TropoProvider.new(token)
 # provider = Sisal::Providers::TropoProvider.new(ARGV.shift)
-provider = Sisal::Providers::ClickatellProvider.new(ARGV.shift)
-message = Sisal::Message.new(ARGV.shift, ARGV.join(' '))
-response = provider.send message
+
+# Clickatell.new(api_id, username, pass)
+# provider = Sisal::Providers::ClickatellProvider.new(*ARGV.shift(3))
+
+# TwilioProvider.new(account_id, auth_token, sender_id)
+# provider = Sisal::Providers::TwilioProvider.new(*ARGV.shift(3))
+
+to, text = ARGV.shift, ARGV.join(' ')
+message = Sisal::Message.new(to, text)
+response = provider.send(message)
 puts response.inspect
