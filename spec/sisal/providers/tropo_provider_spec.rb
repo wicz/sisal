@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Sisal::Providers::TropoProvider do
-  let(:provider)  { Sisal::Providers::TropoProvider.new('123') }
+  let(:provider)  { Sisal::Providers::TropoProvider.new(token: '123') }
   let(:xml)       { "<session><success>true</success><token>123</token><id>123abc</id></session>" }
 
   before(:each) do

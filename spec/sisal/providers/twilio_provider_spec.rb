@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Sisal::Providers::TwilioProvider do
-  let(:provider)  { Sisal::Providers::TwilioProvider.new('123abc', '123poi', '55123') }
+  let(:provider)  { Sisal::Providers::TwilioProvider.new(account_id: '123abc', token: '123poi', from: '55123') }
   let(:message)   { double(:message, inspect: "<Twilio::REST::Message @uri=/2010-04-01/Accounts/123/SMS/Messages/123abc>") }
 
   describe "#new" do

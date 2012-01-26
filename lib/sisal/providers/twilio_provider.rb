@@ -7,9 +7,11 @@ module Sisal
 
       attr_accessor :account_id, :token, :from
 
-      def initialize(account_id, token, sender_id)
-        @account_id, @token, @from = account_id, token, sender_id
-        @client = Twilio::REST::Client.new(@account_id, @token)
+      def initialize(options)
+        @account_id = options[:account_id]
+        @token      = options[:token]
+        @from       = options[:from]
+        @client     = Twilio::REST::Client.new(@account_id, @token)
       end
 
       def deliver(to, message)

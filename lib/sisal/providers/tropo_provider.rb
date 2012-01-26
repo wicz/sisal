@@ -10,8 +10,8 @@ module Sisal
 
       attr_accessor :token
 
-      def initialize(token)
-        @token = token
+      def initialize(options)
+        @token = options[:token]
       end
 
       def deliver(to, message)

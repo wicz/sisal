@@ -16,13 +16,15 @@ module Sisal
       end
 
       def self.build_from_session(session_id)
-        instance = new(nil, nil, nil)
+        instance = new({})
         instance.session_id = session_id
         instance
       end
 
-      def initialize(api_id, user, password)
-        @api_id, @user, @password = api_id, user, password
+      def initialize(options)
+        @api_id   = options[:api_id]
+        @user     = options[:user]
+        @password = options[:password]
       end
 
       def authenticate

@@ -10,7 +10,7 @@ describe Sisal::Providers::ClickatellProvider do
     stub_request(:get, /sendmsg.*session_id=123&text=Hello%20MU!&to=55123.*/).to_return(body: "ID: 123abc")
   end
 
-  let(:provider) { Sisal::Providers::ClickatellProvider.new('api_id', 'user', 'pass') }
+  let(:provider) { Sisal::Providers::ClickatellProvider.new(api_id: 'api_id', user: 'user', password: 'pass') }
 
   describe "::build_from_session" do
     it "initializes from session_id" do
