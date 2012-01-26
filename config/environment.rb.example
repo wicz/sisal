@@ -1,0 +1,9 @@
+Sisal.configure do |config|
+
+  config.default_provider = :tropo
+
+  provider :tropo,      { token: '123' }
+  provider :clickatell, { api_id: '123', user: 'user', password: 'pass' }
+  provider :twilio,     { account_id: '123', token: '123', from: '552500' }
+
+end
