@@ -1,17 +1,9 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/sisal'
-
-# TropoProvider.new(token)
-# provider = Sisal::Providers::TropoProvider.new(ARGV.shift)
-
-# Clickatell.new(api_id, username, pass)
-# provider = Sisal::Providers::ClickatellProvider.new(*ARGV.shift(3))
-
-# TwilioProvider.new(account_id, auth_token, sender_id)
-# provider = Sisal::Providers::TwilioProvider.new(*ARGV.shift(3))
+require_relative '../config/environment'
 
 to, text = ARGV.shift, ARGV.join(' ')
 message = Sisal::Message.new(to, text)
-response = provider.send(message)
-puts response.inspect
+messenger = Sisal::Messenger.new
+puts messenger.send(message).inspect
