@@ -10,7 +10,7 @@ module Sisal
 
       attr_accessor :token
 
-      def initialize(options)
+      def initialize(options = {})
         @token = options[:token]
       end
 

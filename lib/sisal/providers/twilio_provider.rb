@@ -7,7 +7,7 @@ module Sisal
 
       attr_accessor :account_id, :token, :from
 
-      def initialize(options)
+      def initialize(options = {})
         @account_id = options[:account_id]
         @token      = options[:token]
         @from       = options[:from]

@@ -3,18 +3,18 @@ require 'spec_helper'
 describe Sisal do
 
   it "has a default provider" do
-    Sisal.default_provider.should eq(:tropo)
+    Sisal.configuration.default_provider.should be_a(Sisal::Providers::TropoProvider)
   end
 
   it "has providers" do
-    Sisal.providers.should_not be_empty
+    Sisal.configuration.providers.should_not be_empty
   end
 
   describe "#provider" do
     it "configures a provider" do
-      Sisal.provider(:tropo, token: '456')
-      Sisal.providers['tropo'].should be
-      Sisal.providers['tropo'].token.should eq('456')
+      Sisal.configuration.provider(:tropo) { |p| p.token = '456'}
+      Sisal.configuration.providers['tropo'].should be
+      Sisal.configuration.providers['tropo'].token.should eq('456')
     end
   end
 end

@@ -2,8 +2,8 @@ require 'webmock/rspec'
 
 require_relative '../lib/sisal'
 
-Sisal.configure do |config|
-  config.default_provider = :tropo
-  provider :tropo,  { token: '123' }
-  provider :twilio, { account_id: '123', token: '123', from: '55250'}
-end
+config = Sisal.configuration
+config.default_provider = :tropo
+config.provider(:tropo, Sisal::Providers::TropoProvider.new(token: '123'))
+config.provider(:clickatell,  Sisal::Providers::ClickatellProvider.new(api_id: '123', user: 'user', password: 'pass'))
+config.provider(:twilio,       Sisal::Providers::TwilioProvider.new(account_id: '123', token: '123', from: '552500'))

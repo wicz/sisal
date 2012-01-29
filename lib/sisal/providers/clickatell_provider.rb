@@ -21,7 +21,7 @@ module Sisal
         instance
       end
 
-      def initialize(options)
+      def initialize(options = {})
         @api_id   = options[:api_id]
         @user     = options[:user]
         @password = options[:password]
