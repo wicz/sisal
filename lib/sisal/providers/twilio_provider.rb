@@ -2,6 +2,10 @@ require 'twilio-ruby'
 
 module Sisal
   module Providers
+    def self.twilio(*options, &blk)
+      TwilioProvider.new(*options, &blk)
+    end
+
     class TwilioProvider < Provider
       SID_REGEX = /\/(?<sid>[a-z0-9]+)\>/i
 

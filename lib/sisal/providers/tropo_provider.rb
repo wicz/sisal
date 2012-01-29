@@ -2,6 +2,10 @@ require 'rest_client'
 
 module Sisal
   module Providers
+    def self.tropo(*options, &blk)
+      TropoProvider.new(*options, &blk)
+    end
+
     class TropoProvider < Provider
       API_URL         = "https://api.tropo.com/1.0/sessions"
       # Let's use a regex against the xml response, thus we don't need

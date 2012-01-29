@@ -2,6 +2,10 @@ require 'rest_client'
 
 module Sisal
   module Providers
+    def self.clickatell(*options, &blk)
+      ClickatellProvider.new(*options, &blk)
+    end
+
     class ClickatellProvider < Provider
       API_URL         = "https://api.clickatell.com/http"
       RESPONSE_REGEX  = /(?<status>OK|ERR|ID):\s*(?<code>[a-z0-9]+)?(,\s*(?<description>.*))?/
