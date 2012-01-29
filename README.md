@@ -31,7 +31,6 @@ Sisal can send messages via the following providers:
 * Separate providers implementations, e.g. sisal-tropo, sisal-twilio
 * Implement encodings LATIN1 and UCS2
 * Support for binary messages: EMS, Nokia's Smart Messaging and MMS
-* Evolve provider configuration to a more flexible solution like `Sisal.provider(name, &block)`
 * Support for binary Concatenated SMS
 * etc.
 
@@ -50,11 +49,10 @@ provider.send(message)
 Assuming you have configured your providers:
 
 ```ruby
-Sisal.configure do |config|
-  config.default_provider = :tropo
-  provider :tropo,  { token: '123' }
-  provider :twilio, { account_id: '123', token: '123', from: '55600' }
-end
+config = Sisal.configuration
+config.default_provider = :tropo
+config.provider(:tropo,  Sisal::Providers::TropoProvider.new(token: '123'))
+config.provider(:twilio, Sisal::Providers::TwilioProvider.new(account_id: '123', token: '123', from: '552500'))
 ```
 
 You can send messages just as simple as:
@@ -68,4 +66,12 @@ You can also change your default provider on the fly:
 
 ```ruby
 messenger.send(message, provider: 'twilio')
+```
+
+If you need, you can change your providers settings:
+
+```ruby
+config.provider(:tropo) do |p|
+  p.token = '312'
+end
 ```
