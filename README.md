@@ -40,7 +40,7 @@ Sisal can send messages via the following providers:
 
 ```ruby
 message = Sisal::Message.new('552500', 'Hello MU!')
-provider = Sisal::Providers::TropoProvider(token: '123')
+provider = Sisal::Providers.tropo(token: '123')
 provider.send(message)
 ```
 
@@ -51,8 +51,8 @@ Assuming you have configured your providers:
 ```ruby
 config = Sisal.configuration
 config.default_provider = :tropo
-config.provider(:tropo,  Sisal::Providers::TropoProvider.new(token: '123'))
-config.provider(:twilio, Sisal::Providers::TwilioProvider.new(account_id: '123', token: '123', from: '552500'))
+config.provider(:tropo,  Sisal::Providers.tropo(token: '123'))
+config.provider(:twilio, Sisal::Providers.twilio(account_id: '123', token: '123', from: '552500'))
 ```
 
 You can send messages just as simple as:
