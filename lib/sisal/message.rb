@@ -8,7 +8,7 @@ module Sisal
     PHONE_LENGTH      = [4, 15]
     SMS_MAX_SIZE      = 140
 
-    attr_writer :to, :text
+    attr_accessor :to, :text
 
     def initialize(to, text)
       @to, @text = to, text
@@ -16,10 +16,6 @@ module Sisal
 
     def text
       @text.encode('US-ASCII')
-    end
-
-    def to
-      [*@to]
     end
 
     def valid?
