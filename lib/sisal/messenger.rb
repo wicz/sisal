@@ -6,7 +6,7 @@ module Sisal
       provider_name = options[:provider].to_s
       provider = Sisal.configuration.providers[provider_name] || Sisal.configuration.default_provider
       raise UnknownProvider unless provider
-      provider.send(message)
+      provider.send(message, options)
     end
   end
 end
