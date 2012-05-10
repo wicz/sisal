@@ -3,7 +3,7 @@ module Sisal
     UnknownProvider = Class.new(StandardError)
 
     def send(message, options = {})
-      provider_name = options[:provider].to_s
+      provider_name = options.delete(:provider).to_s
       provider = Sisal.configuration.providers[provider_name] || Sisal.configuration.default_provider
       raise UnknownProvider unless provider
       provider.send(message, options)
