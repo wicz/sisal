@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-
-require_relative '../lib/sisal'
-require_relative '../config/environment'
-
-to, text = ARGV.shift, ARGV.join(' ')
-message = Sisal::Message.new(to, text)
-messenger = Sisal::Messenger.new
-puts messenger.send(message).inspect
