@@ -1,7 +1,0 @@
-config = Sisal.configuration
-
-config.default_provider = :tropo
-
-config.provider(:tropo,       Sisal::Providers.tropo(token: '123'))
-config.provider(:twilio,      Sisal::Providers.twilio(account_id: '123', token: '123', from: '552500'))
-config.provider(:clickatell,  Sisal::Providers.clickatell(api_id: '123', user: 'user', password: 'pass'))
