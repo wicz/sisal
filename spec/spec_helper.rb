@@ -1,9 +1,8 @@
-require 'webmock/rspec'
+$:.unshift File.expand_path('..', __FILE__)
+$:.unshift File.expand_path('../../lib', __FILE__)
 
-require_relative '../lib/sisal'
+require "rspec"
 
-config = Sisal.configuration
-config.default_provider = :tropo
-config.provider(:tropo, Sisal::Providers::TropoProvider.new(token: '123'))
-config.provider(:clickatell,  Sisal::Providers::ClickatellProvider.new(api_id: '123', user: 'user', password: 'pass'))
-config.provider(:twilio,       Sisal::Providers::TwilioProvider.new(account_id: '123', token: '123', from: '552500'))
+require_relative "../lib/sisal"
+
+DummyProvider = Struct.new(:token)
